@@ -1,0 +1,28 @@
+﻿@model MVCProJect.Models.MusicInstruments
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th> Instrument Name</th>
+			<th> Instructor Name</th>
+			<th> Course Duration (Hours)</th>
+			<th> Genre </th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<tr>
+			<td>@Model.Name</td>
+			<td>@Model.InstructorName</td>
+			<td>@Model.CourseDuration</td>
+			<td>@Model.Genre.Type</td>
+		</tr>
+	</tbody>
+</table>
+

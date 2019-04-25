@@ -1,7 +1,57 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	height:1200px;
+	
 }
+
+/*Layout navbar*/
+#navbar {
+	color: white;
+	background-color: #f7c9a7;
+	border: 1px solid #f7c9a7;
+}
+	.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+		color:#808080 ;
+
+	}
+
+		.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+			color: #557451;
+			font-weight: bold
+		}
+.navbar-fixed-top {
+	position: fixed;
+}
+
+.scrolled {
+	background-color: #f7c9a7;
+	opacity:.9;
+}
+
+/*Layout Footer*/
+.navbar-wrapper {
+	/*padding-top: 15px;
+	padding-bottom: 15px;*/
+	background-color: #808080;
+}
+
+	.navbar-wrapper .navbar-text {
+		padding-left: 500px;
+		text-align: center;
+		color: white
+	}
+.button {
+	background-color: white;
+	color: #c33e3e;
+	font-weight: bold;
+}
+		.button:hover {
+			background-color: #c33e3e;
+			color: white;
+			border: 1px solid #A4CC9F;
+			font-weight: bold;
+		}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -22,3 +72,115 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.field-validation-error {
+
+	color : red 
+}
+.input-validation-error {
+
+	border :2px solid #ff0000
+}
+
+.jumbotron {
+	background-image: url('../Images/Tera Music.jpg');
+	background-repeat: no-repeat;
+	padding: 0;
+	width: 100%;
+	margin: 0 auto;
+	min-height: 80vh;
+	overflow: auto;
+	background-size: cover;
+	display: block;
+}
+
+/*Home Page*/
+section.home {
+	
+}
+
+.title {
+	font-family: HavanaSunsetScript;
+	color: rgb(255, 216, 0);
+	font-weight: normal;
+	line-height: 64px;
+	display: flex;
+	-webkit-box-pack: center;
+	justify-content: center;
+	-webkit-font-smoothing: antialiased;
+	 text-size-adjust: 100%;
+
+	/*color: #ffffff;*/
+	padding-top: 40px;
+	padding-bottom: 20px;
+	padding-left: 80px;
+}
+
+/*UML Page*/
+.Btn {
+	/*color: white;
+	font-weight: bold*/
+	background-color: #c33e3e;
+	color: white;
+	border: 1px solid #c33e3e;
+	font-weight: bold;
+}
+
+	.Btn:hover  {
+		border-color: crimson;
+		background-color: white;
+		color: #c33e3e;
+		font-weight: bold;
+	}
+
+/*Customer Details page*/
+.Customer List {
+	list-style: square;
+}
+
+/*Home Index*/
+.home {
+	padding-top: 50px;
+	text-align: center;
+	margin-left: 50px;
+	margin-right: 20px;
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	/*-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;*/
+	transform-style: preserve-3d;
+}
+	.home .col4 {
+		background-color: #DDD;
+		border: 1px solid #DDD;
+		border-top-left-radius: 70px;
+		border-bottom-right-radius: 70px;
+		height:200px;
+		margin-left:15px;
+		width:330px;
+	}
+
+		.home .col4:hover {
+			-webkit-transform: scale3d(1,1.2,1) translate3d(10px,10px,10px);
+			-moz-transform: scale3d(1,1.2,1) translate3d(10px,10px,10px);
+			-o-transform: scale3d(1,1.2,1) translate3d(10px,10px,10px);
+			-ms-transform: scale3d(1,1.2,1) translate3d(10px,10px,10px);
+			transform: scale3d(1,1.2,1) translate3d(10px,10px,10px);
+
+			-webkit-transition: all .3s ease-in-out;
+			-moz-transition: all .3s ease-in-out;
+			-o-transition: all .3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+		.home .data h2 {
+			color: #922e2e;
+			font-size: 25px;
+			font-weight: bold;
+			font-family: 'Bell MT';
+			padding-bottom: 10px;
+		}
+	.home .data p {
+		padding-bottom:10px
+	}
+	

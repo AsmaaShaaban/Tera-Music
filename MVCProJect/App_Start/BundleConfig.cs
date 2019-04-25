@@ -8,8 +8,16 @@ namespace MVCProJect
 		// For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
 		public static void RegisterBundles(BundleCollection bundles)
 		{
-			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-						"~/Scripts/jquery-{version}.js"));
+			bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/jquery-ui-1.12.1.js",
+						"~/Scripts/bootstrap.js",
+					    "~/Scripts/bootbox.js",
+					    "~/Scripts/DataTables/jquery.dataTables.js",
+					    "~/Scripts/DataTables/dataTables.bootstrap.js",
+						"~/Scripts/typeahead.bundle.js",
+						"~/Scripts/toastr.js"));
+
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -19,11 +27,12 @@ namespace MVCProJect
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
+					  "~/Content/DataTables/css/dataTables.bootstrap.css",
+					  "~/Content/typeahead.css",
+					   "~/Content/toastr.css",
 					  "~/Content/site.css"));
 		}
 	}

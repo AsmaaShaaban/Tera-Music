@@ -20,10 +20,16 @@ namespace MVCProJect.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+		public  DbSet<Customer> Customers { get; set; }
+		public DbSet<MusicInstruments> MusicInstruments { get; set; }
+		public DbSet<Membership> Memberships { get; set; }
+		public DbSet<Genre> Genres { get; set; }
+		public DbSet<UML> UML { get; set; }
+
+		public ApplicationDbContext()
+				: base("DefaultConnection", throwIfV1Schema: false)
+			{
+			}
 
         public static ApplicationDbContext Create()
         {

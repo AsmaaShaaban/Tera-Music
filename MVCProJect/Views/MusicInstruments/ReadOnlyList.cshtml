@@ -1,0 +1,103 @@
+﻿@model IEnumerable<MVCProJect.Models.MusicInstruments>
+
+@{
+				/**/
+
+				ViewBag.Title = "Index";
+				Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@if (!Model.Any())
+{
+	<p> Sorry , Website is upgrading ... </p>
+}
+else
+{*@
+
+	<h2>Music</h2>
+	@*@Html.ActionLink("Create", "Create", "MusicInstruments", null, new { @class = "btn btn-success" })*@
+	<table class="table table-bordered table-hover" id="musicInstrument">
+		<thead>
+			<tr>
+				<th>Music Instrument </th>
+				<th>Music Type </th>
+				@*<th>Edit </th>
+				<th>Delete </th>*@
+			</tr>
+		</thead>
+		<tbody>
+			@*@foreach (var music in Model)
+			{
+				<tr>
+					<td>@music.Name</td>
+					<td>@Html.ActionLink("Details", "Details", "MusicInstruments", new { Id = music.Id }, null)</td>
+					<td>@Html.ActionLink("Edit", "Edit", "MusicInstruments", new { Id = music.Id }, null)</td>
+					<td>@Html.ActionLink("Delete", "Delete", "MusicInstruments", new { Id = music.Id }, null)</td>
+				</tr>
+			}*@
+
+		</tbody>
+
+	</table>
+
+@*}*@
+@section scripts
+{
+	<script>
+		$(document).ready(function () {
+			var table = $("#musicInstrument").DataTable({
+				ajax: {
+					url: "/api/MusicInstruments",
+					dataSrc: ""
+				},
+				columns: [
+					{
+						data: "name"
+						//render: function (data) {
+						//	return "<a href='#'>" + data + "</a>";
+						//}
+					},
+					{
+						data: "genre.type"
+					}
+
+					//{
+					//	data: "id",
+					//	render: function (data) {
+					//		return "<button class='btn btn-link' data_instrument_Id=" + data + ">Edit</button>";
+					//	}
+					//},
+					//{
+					//	data: "id",
+					//	render: function (data) {
+					//		return "<button class='btn btn-link js-delete' data_instrument_Id=" + data + ">Delete</button>";
+					//	}
+					//}
+				]
+
+			});
+			//$("#musicInstrument").on("click", ".js-delete", function () {
+			//	var button = $(this);
+			//	bootbox.confirm("Are You Sure to DELETE this Instrument?", function (result) {
+			//		if (result) {
+			//			$.ajax({
+			//				method: "DELETE",
+			//				url: "/api/MusicInstrument/" + button.attr("data_instrument_Id"),
+			//				success: function () {
+			//					table.row(button.parents("tr")).remove().draw();
+			//				}
+			//			});
+			//		}
+			//	});
+
+
+			//});
+		});
+
+	</script>
+}
+
+
+
+
+

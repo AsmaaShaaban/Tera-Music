@@ -1,0 +1,37 @@
+﻿@model MVCProJect.ViewModel.ListOfMembership
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Form</h2>
+
+@using (Html.BeginForm("CreateCustomer" , "Customer")) {
+
+	<div class="form-group">
+		@Html.LabelFor(c => c.Customer.Name)
+		@Html.TextBoxFor(c=>c.Customer.Name , new {@class = "form-control"})
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(c=>c.Customer.BirthDate)
+		@Html.TextBoxFor(c=>c.Customer.BirthDate ,"{0:d MMM yyyy}", new {@class = "form-control"})
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(c=>c.Customer.MembershipId)
+		@Html.DropDownListFor(c=>c.Customer.MembershipId, new SelectList(Model.Memberships, "Id" , " Name"), "Select Membership" ,new {@class = "form-control"})
+	</div>
+	<div class="checkbox">
+		<label>
+			@Html.CheckBoxFor(c=>c.Customer.IsSubscribedToNewsLetters) Is subscribed ?
+		</label>
+	</div>
+
+	@Html.HiddenFor(c=>c.Customer.Id)
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit"> Save </button>
+
+	</div>
+
+}
+

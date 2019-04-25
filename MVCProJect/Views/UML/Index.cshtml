@@ -1,0 +1,146 @@
+﻿@model dynamic
+@{
+	ViewBag.Title = "New Form";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rental</h2>
+<form id="Rental" method="post">
+	<div class="form-group">
+		<label for="customer">Customer</label>
+		<div class="tt-container">
+			<input required type="text" name="customer"  data-rule-validCustomer="true" id="customer" value="" class="form-control" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="music">Instrument</label>
+		<div class="tt-container">
+			<input type="text" name="music" data-rule-atLeastOneInstrument="true" id="music" value="" class="form-control" />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4 col-sm-4">
+			<ul class="list-group" id="musics"></ul>
+		</div>
+	</div>
+
+	<button class="btn button Btn" type="submit">submit</button>
+
+</form>
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+	<script>
+
+		$(document).ready(function () {
+
+			//array to save data of Customer & Music Instruments in it
+			//save instruments is viewmodel so can be sent to a server later
+			var viewmodel = {
+				CustomerId :"",
+				MusicId :[]
+			};
+
+			//autocomplete from typeahead to customers Name
+			var customer = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: {
+					url: '/api/Customer?query=%QUERY',
+					wildcard: '%QUERY'
+				}
+			});
+
+			$('#customer').typeahead({
+				minLength: 2,
+				highlight: true
+				
+			},
+			{
+				name: 'customer',
+				display: 'name',
+				source: customer
+				}).on("typeahead:select", function (e, customer) {
+					viewmodel.CustomerId = customer.id;
+			});
+
+			//autocomplete from typeahead to Music Instrument
+			var music = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: {
+					url: '/api/MusicInstruments?query=%QUERY',
+					wildcard: '%QUERY'
+				}
+			});
+
+			$('#music').typeahead({
+				highlight: true,
+				minLength: 2
+			},
+				{
+					name: 'music',
+					display: 'name',
+					source: music
+
+				}).on("typeahead:select", function (e, music) {
+
+				//Add instruments in lists without points 
+				$('#musics').append("<li class='list-group-item'>" + music.name + "</li>");
+				$('#music').typeahead("val","");
+				viewmodel.MusicId.push(music.id);
+			});
+
+			//custom validation to Customer
+
+			$.validator.addMethod("validCustomer", function () {
+				return viewmodel.CustomerId && viewmodel.CustomerId !== 0;
+			}, "Please Select a valid Customer");
+
+			//custom validation to Instrument
+			$.validator.addMethod("atLeastOneInstrument", function () {
+				return viewmodel.MusicId.length > 0;
+			}, "Please select at least one Instrument");
+
+			//to check validation first before submitting the form
+			var validator = $('#Rental').validate({
+				submitHandler: function () {
+
+					$.ajax({
+
+						url: '/api/UML',
+						method: 'POST',
+						data: viewmodel,
+
+						success: function () {
+							toastr.success("Rentals are added");
+
+			//to return fields empty again after adding values
+							$('#customer').typeahead("val", "");
+							$('#music').typeahead("val", "");
+							$('#musics').empty();
+
+							viewmodel = { MusicId: [] };
+							validator.resetForm();
+
+						},
+						error: function () {
+							toastr.error("Something went wrong");
+						}
+					});
+
+					//to prevent default
+					return false;
+				}
+			});
+
+		});
+	</script>
+
+}
+
+
+
+

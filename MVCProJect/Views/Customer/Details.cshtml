@@ -1,0 +1,18 @@
+﻿@model MVCProJect.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<ul class="Customer List">
+	<li>Customer Name   : @Model.Name</li>
+	<li>Membership Type : @Model.Membership.Name</li>
+	<li>Fees : $@Model.Membership.SignUpFee</li>
+	<li>Duration : @Model.Membership.Duration Hr</li>
+	<li>Discount Rate : @Model.Membership.Discount%</li>
+	<li>Is a member : @Model.IsSubscribedToNewsLetters</li>
+</ul>
+
